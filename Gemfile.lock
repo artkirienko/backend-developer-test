@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    lazy_priority_queue (0.1.1)
+    rgl (0.5.4)
+      lazy_priority_queue (~> 0.1.0)
+      stream (~> 0.5.2)
+    stream (0.5.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rgl (~> 0.5)
+
+BUNDLED WITH
+   2.0.2
