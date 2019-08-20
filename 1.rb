@@ -1,7 +1,26 @@
 class InfographicsController < ApplicationController
   # allows user to change their infographic title
+  #
+  # we need to authorize user: check if a user has permission to update
+  # this infographic (check if a user owns it)
+  # if we use gem 'cancancan', we can simply add
+  #
+  # load_and_authorize_resource
+  #
+  # to the top of our controller. It will use a before action to load
+  # the resource into an instance variable and authorize it for every action.
+  #
   def update
+    # another option is to change this line
     @infographic = Infographic.find(params[:id])
+    #
+    # @infographic = Infographic.find_by!(id: 3, user: current_user)
+    #
+    # so we only use current_user variable (e.g. from gem 'devise')
+    # or we can just add this line here (uses gem 'cancancan'):
+    #
+    # authorize! :update, @infographic
+    #
     if @infographic.update_attributes(update_params)
       render json: @infographic
       # Codestyle concern: we have 'status: 422' two lines below
