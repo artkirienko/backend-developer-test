@@ -2,6 +2,9 @@
 # 2. Eager loading associations
 # 3. Conditional GETs (HTTP feature) caching
 # 4. View Fragment Caching
+# 5. !IMPORTANT: if nothing helps, just cache this stuff
+#    using memcached/redis (Google: Rails Model Caching with Redis),
+#    cache two queries: one for free user, one for paid user
 
 # app/models/theme.rb
 class Theme < ApplicationRecord
