@@ -1,0 +1,96 @@
+﻿Backend Developer Test
+
+
+
+
+# 1. What is the major concern of the following code and how would you improve it?
+#    Please explain your concerns using in-line comments
+
+class InfographicsController < ApplicationController
+ # allows user to change their infographic title
+ def update
+   @infographic = Infographic.find(params[:id])
+   if @infographic.update_attributes(update_params)
+     render json: @infographic
+   else
+                render json: { errors: @infographic.errors.full_messages }, status: 422
+   end
+ end
+
+ private
+ def update_params
+   params.require( :infographic ).permit( :title )
+ end
+end
+
+# 2. What kind of situation(s) would trigger the line where 'status: 422'?
+
+class InfographicsController < ApplicationController
+ def show
+   @infographic = Infographic.find( params[:id] )
+
+   if @infographic
+     render json: @infographic
+   else
+     render json: {}, status: 422
+   end
+ end
+end
+
+# 3. A friend of yours is planning a trip across the country via train, but they can't read the train information! They've asked you to help and they want you to check if they can get from place to place on the rail network. You hit a snag while trying to help when you've found that the trains don't always return to a station they've departed from! That is to say that a train route might go from Station X to Station Y, but it might not go from Station Y to Station X.
+
+# They love train trips so they don't care how many trains it takes as long as it's possible to reach their target destination.
+
+# You've decided to write a program to help you with the job and the format you've decide to use is as follows:
+
+check_trip( start, target, stations, station_links )
+# You want the method to return "Trip is Possible" if the trip is possible and "Trip is impossible" if otherwise
+
+# Example usages:
+
+stations = ["ADL", "BRI", "MEL", "SYD"]
+
+links = {"ADL" => ["MEL"], "MEL" => ["ADL", "SYD"],  "SYD" => ["BRI"]}
+
+check_trip( "ADL", "BRI", stations, links ) # => "Trip is Possible"
+check_trip( "MEL", "BRI", stations, links ) # => "Trip is Possible"
+check_trip( "SYD", "ADL", stations, links ) # => "Trip is impossible"
+
+# Note: The Hash provided for the 'links' argument will always have default = []
+
+def check_trip( start, target, stations, station_links )
+ # your code here
+end
+
+# 4. What strategies would you use to optimize the rendering time? (Hint: thereâ€™s
+#    more than 1 strategy to be implemented)
+
+# Controller
+def index
+ @themes = Theme.published.order(created_at: :desc) # takes an average of 350ms
+
+ respond_to do |format|
+   format.html
+   format.json { render json: @themes }
+ end
+end
+
+# View (part of it) - this portion takes an average of 1000ms to render
+<% @themes.each do |theme| %>
+ <li id="pikto-theme-item-<%= theme.id %>" class="theme-items">
+   <div class="<%= 'protemplate' if theme.pro? && current_user.is_free? %>">
+     <% if theme.is_new? %>
+     <i class="icon-tagnew"></i>
+     <% end %>
+     <% if theme.is_featured? %>
+     <i class="icon-tagfeatured"></i>
+     <% end %>
+     <div class="the-infographic-img">
+       <a href="#"><%= image_tag(theme.snapshot.url(:medium)) %></a>
+     </div>
+   </div>
+   <div class="infographic-details">
+     <%= theme.title %>
+   </div>
+ </li>
+<% end %>
