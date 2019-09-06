@@ -1,3 +1,7 @@
+[![Build Status](https://img.shields.io/travis/artkirienko/backend-developer-test/master.svg?style=flat-square&logo=travis-ci&logoColor=orange)](https://travis-ci.org/artkirienko/backend-developer-test)
+[![GitHub Actions Ruby](https://github.com/artkirienko/backend-developer-test/workflows/Ruby/badge.svg)](https://github.com/artkirienko/backend-developer-test/actions)
+[![HitCount](http://hits.dwyl.io/artkirienko/backend-developer-test.svg)](http://hits.dwyl.io/artkirienko/backend-developer-test)
+
 # Backend Developer Test
 
 ## Task 1
