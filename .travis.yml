@@ -1,8 +1,8 @@
 sudo: false
 language: ruby
 rvm:
-  - 2.6.3
-before_install: gem install bundler -v 2.0.2
+  - 2.7
+before_install: gem install bundler -v 2.1.4
 script: |
   bundle exec ruby lib/3_1_using_ruby_graph_library.rb
   bundle exec ruby lib/3_2_plain_ruby.rb
