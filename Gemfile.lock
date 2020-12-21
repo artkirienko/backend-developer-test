@@ -1,11 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    generator (0.0.1)
     lazy_priority_queue (0.1.1)
-    rgl (0.5.6)
+    rgl (0.5.7)
       lazy_priority_queue (~> 0.1.0)
-      stream (~> 0.5.2)
-    stream (0.5.2)
+      stream (~> 0.5.3)
+    stream (0.5.3)
+      generator
 
 PLATFORMS
   ruby
